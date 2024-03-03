@@ -9,8 +9,8 @@ import Categories from './components/Categories';
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<Books />} />
-      <Route path="/Categories" element={<Categories />} />
+      <Route path="/bookstore/" element={<Books />} />
+      <Route path="/bookstore/Categories" element={<Categories />} />
     </Routes>
   );
 }
