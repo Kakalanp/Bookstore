@@ -22,7 +22,7 @@ export default function Navbar() {
       <ul className={styles.linksList}>
         {links.map((link) => (
           <li key={link.id}>
-            <Link to={`/${link.path}`}>{link.name}</Link>
+            <Link to={`/bookstore/${link.path}`}>{link.name}</Link>
           </li>
         ))}
       </ul>
