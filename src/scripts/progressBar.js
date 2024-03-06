@@ -1,6 +1,9 @@
 export default function circleProgressBar(id) {
-  const progressCircle = document.getElementById(`circular-progress-${id.id}`);
-  const progressEndValue = Number(document.getElementById(`progress-value-${id.id}`).textContent);
+  const progressCircle = document.getElementById(`circular-progress-${id}`);
+  if (progressCircle) {
+    console.log('all good');
+  } else return;
+  const progressEndValue = Number(document.getElementById(`progress-value-${id}`).textContent);
 
   let progressValue = 0;
   const speed = 20;

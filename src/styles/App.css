@@ -1,3 +1,9 @@
+@property --progress {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -35,4 +41,87 @@ button {
   border-radius: 4px;
   border: none;
   padding: 12px;
+}
+
+.testbook {
+  width: 300px;
+  height: 100px;
+  background-color: #865645;
+  margin: 200px;
+  border-radius: 6px;
+  box-shadow: -10px 30px 60px 0 rgba(0, 0, 0, 0.75) inset;
+  text-align: center;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(-90deg);
+
+  .book_info {
+    width: 80%;
+    padding: 5px;
+  }
+
+  .title {
+    font-size: 18px;
+    color: transparent;
+    background-color: #000000;
+    text-shadow: 1px 1px 1px var(--text-color);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    text-wrap: pretty;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .author {
+    margin: 2px;
+    font-size: 16px;
+    order: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: #b9b9b9;
+  }
+
+  .circular-progress {
+    --size: 30px;
+    --half-size: calc(var(--size) / 2);
+    --stroke-width: 3px;
+    --radius: calc((var(--size) - var(--stroke-width)) / 2);
+    --circumference: calc(var(--radius) * pi * 2);
+    --dash: calc((var(--progress) * var(--circumference)) / 100);
+
+    animation: progress-animation 5s linear 0s 1 forwards;
+  }
+
+  .circular-progress circle {
+    cx: var(--half-size);
+    cy: var(--half-size);
+    r: var(--radius);
+    stroke-width: var(--stroke-width);
+    fill: none;
+    stroke-linecap: round;
+  }
+
+  .circular-progress circle.bg {
+    stroke: #0000003f;
+  }
+
+  .circular-progress circle.fg {
+    transform-origin: var(--half-size) var(--half-size);
+    stroke-dasharray: var(--dash) calc(var(--circumference) - var(--dash));
+    transition: stroke-dasharray 0.3s linear 0s;
+    stroke: var(--text-color);
+  }
+}
+
+@keyframes progress-animation {
+  from {
+    --progress: 0;
+  }
+
+  to {
+    --progress: var(--completion);
+  }
 }
